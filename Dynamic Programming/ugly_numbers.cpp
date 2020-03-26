@@ -12,12 +12,13 @@ int main()
     
     ugly[0] = 1;
 
-    n2 = ugly[i2] * 2;
-    n3 = ugly[i3] * 3;
-    n5 = ugly[i5] * 5;
-
     while(count < n)
     {
+        
+        n2 = ugly[i2] * 2;
+        n3 = ugly[i3] * 3;
+        n5 = ugly[i5] * 5;
+
         next = (n2 < n3) ? ((n2 < n5) ? n2 : n5) : ((n3 < n5) ? n3 : n5);
         ugly[count] = next;
 

@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+int partitionDiff(int[], int, int);
+
+int main()
+{
+    int n, m, s = 0, i;
+    printf("Enter the size of set ");
+    scanf("%d", &n);
+    int a[n];
+    printf("Enter the elements of set\n");
+    for(i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+        s = s + a[i];
+    }
+
+    m = partitionDiff(a, n, s);
+    printf("Minimun difference is %d\n", m);
+
+    return 0;
+}
+
+int partitionDiff(int a[], int n, int s)
+{
+    int dp[n+1][s+1];
+
+}
