@@ -33,7 +33,7 @@ int main()
 int Recursive_Knapsack(int wt[], int val[], int W, int n)
 {
 
-    static int dp[101][1001] = {{-1}};
+    static int dp[101][1001];
 
     for (int i = 0; i < 101; i++)
     {
