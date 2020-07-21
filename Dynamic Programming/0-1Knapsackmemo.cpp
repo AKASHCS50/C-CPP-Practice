@@ -1,11 +1,10 @@
 // O(n*W)
 
-#include <stdio.h>
-#include <algorithm>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int Recursive_Knapsack(int[], int[], int, int);
+int knapsackMemo(int[], int[], int, int, vector<vector<int> >);
 
 int main()
 {
@@ -14,6 +13,7 @@ int main()
     scanf("%d", &n);
 
     int wt[n], val[n];
+    vector<vector<int> > dp(W + 1, vector<int>(n + 1, -1));
     printf("Enter the weight of items\n");
     for (i = 0; i < n; i++)
         scanf("%d", &wt[i]);
@@ -24,33 +24,29 @@ int main()
     printf("Enter the capacity of Knapsack ");
     scanf("%d", &W);
 
-    maxm = Recursive_Knapsack(wt, val, W, n);
+    maxm = knapsackMemo(wt, val, W, n, dp);
     printf("Maximum profit is %d\n", maxm);
 
     return 0;
 }
 
-int Recursive_Knapsack(int wt[], int val[], int W, int n)
+int knapsackMemo(int wt[], int val[], int W, int n, vector<vector<int> > dp)
 {
-
-    static int dp[101][1001];
-
-    for (int i = 0; i < 101; i++)
-    {
-        for (int j = 0; j < 1001; j++)
-        {
-            dp[i][j] = -1;
-        }
-    }
-
-    if (n <= 0 || W <= 0)
-        return 0;
 
     if (dp[n][W] != -1)
         return dp[n][W];
 
-    if (wt[n - 1] <= W)
-        return dp[n][W] = max((val[n - 1] + Recursive_Knapsack(wt, val, W - wt[n - 1], n - 1)), Recursive_Knapsack(wt, val, W, n - 1));
     else
-        return dp[n][W] = Recursive_Knapsack(wt, val, W, n - 1);
+    {
+        if (n <= 0 || W <= 0)
+            return 0;
+
+        if (wt[n - 1] <= W)
+            return dp[n][W] = max(val[n - 1] + knapsackMemo(wt, val, W - wt[n - 1], n - 1, dp), knapsackMemo(wt, val, W, n - 1, dp));
+        else
+            return dp[n][W] = knapsackMemo(wt, val, W, n - 1, dp);
+    }
+
+    if (n <= 0 || W <= 0)
+        return 0;
 }

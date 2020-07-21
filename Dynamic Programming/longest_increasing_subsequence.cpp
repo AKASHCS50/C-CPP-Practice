@@ -34,24 +34,21 @@ int longSub(int a[], int n, int s)
     //     return max(longSub(a, n-1, s), longSub(a, n -1, a[n-1]));
     // }    
 
-    int dp[n+1][s+1];
+    int dp[n+1];
 
     for(int i = 0; i <= n; i++)
     {
-        for(int j = 0; j <= s; j++)
-        {
-            if(i == 0 || j == 0)
-                dp[i][j] =  0;
+            if(i == 0)
+                dp[i] = 0;
+            
+            if(i == 1)
+                dp[i] = 1;
             
             else if(dp[i-1][j] < j)
                 dp[i][j] = 1 + dp[i-1][a[i-1]];
             else
                 dp[i][j] = max(dp[i-1][j], dp[i-1][a[i-1]]);
-
-            printf("%d ", dp[i][j]);
-        }
-        printf("\n");
     }
 
-    return dp[n][s];
+    return dp[n];
 }
