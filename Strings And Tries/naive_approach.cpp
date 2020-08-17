@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void naiveSeacrh(char[], char[]);
+void naiveSearch(char[], char[]);
 
 int main()
 {
@@ -16,12 +16,32 @@ int main()
     return 0;
 }
 
-void naiveSeacrh(char txt[], char pat[])
+void naiveSearch(char txt[], char pat[])
 {
-    int n, m;
+    int n, m, i, j, x, f;
 
     n = strlen(txt);
     m = strlen(pat);
 
-    
+    if(m > n)
+        return;
+
+    for(i = 0; i < n; i++)
+    {
+        if(txt[i] == pat[0])
+        {
+            f = 1;
+            j = 0;
+            for(x = i; x < m + i; x++, j++)
+            {
+                 if(x == n || txt[x] != pat[j])
+                 {
+                     f = 0;
+                     break;
+                 }
+            }   
+            if(f == 1)
+                printf("String match found at index %d\n", i);
+        }
+    }
 }
