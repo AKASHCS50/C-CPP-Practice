@@ -1,0 +1,15 @@
+i = n;
+j = W;
+val = profit
+while(i > 0 && val > 0 && j > 0)
+{
+    if(dp[i][j] == dp[i - 1][j])
+        i--;
+    else
+    {
+        print item i - 1;
+        i--;
+        j = j - wt[i - 1]
+        val = val - val[i - 1]
+    }
+}
